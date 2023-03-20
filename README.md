@@ -1,6 +1,6 @@
-# Welcome to Remix!
+# Intro to Remix: Teaching young dogs old tricks
 
-- [Remix Docs](https://remix.run/docs)
+This is a demo of a simple app built with [Remix](https://remix.run), a web framework that builds on web standards. This demo was prepared for a [meetup talk](https://www.meetup.com/react-atx/events/frbdlryfcfbcc/) given on March 22nd, 2023.
 
 ## Development
 
@@ -12,42 +12,33 @@ npm run dev
 
 This starts your app in development mode, rebuilding assets on file changes.
 
-## Deployment
+For more information on starting your own remix project, checkout [the docs](https://remix.run/docs/).
 
-First, build your app for production:
+## Overview
 
-```sh
-npm run build
-```
+There are a _lot_ of cool aspects to building Remix Applications, but for the sake of time and focus, I'm going to highlight what to me are the best parts.
 
-Then run the app in production mode:
+1. SSR
+2. Nested Layouts
+3. Data loading
+4. Mutations
+5.
 
-```sh
-npm start
-```
+Some awesome things we won't be able to cover (at least not in detail), but you should check out if you have more time:
 
-Now you'll need to pick a host to deploy it to.
+- [Remix Stacks](https://remix.run/docs/en/main/pages/stacks)
+- [Streaming/deferred](https://remix.run/docs/en/main/guides/streaming#md-streaming)
+- [Session Management](https://remix.run/docs/en/main/utils/sessions#using-sessions)
+- [Catch](https://remix.run/docs/en/main/route/catch-boundary)/[Error](https://remix.run/docs/en/main/route/error-boundary) Boundaries
+- [Optimistic UI](https://remix.run/docs/en/main/guides/optimistic-ui)
+- [Resource routes](https://remix.run/docs/en/main/guides/resource-routes)
 
-### DIY
+and so much more!
 
-If you're familiar with deploying node applications, the built-in Remix app server is production-ready.
+## Who am I?
 
-Make sure to deploy the output of `remix build`
+My name is [Brooks Lybrand](https://twitter.com/BrooksLybrand) and I am a Senior Web Engineer for the best grocery store in the world (okay, at least in Texas), [H-E-B](https://heb.com)!
 
-- `build/`
-- `public/build/`
+I specialize in building proof of concepts, evaluating tools, and creating highly interactive, data-rich applications. I enjoy exploring new ideas and technologies to help create better experiences for both developers and end-users.
 
-### Using a Template
-
-When you ran `npx create-remix@latest` there were a few choices for hosting. You can run that again to create a new project, then copy over your `app/` folder to the new project that's pre-configured for your target server.
-
-```sh
-cd ..
-# create a new project, and pick a pre-configured host
-npx create-remix@latest
-cd my-new-remix-app
-# remove the new project's app (not the old one!)
-rm -rf app
-# copy your app over
-cp -R ../my-old-remix-app/app app
-```
+When I'm not coding, I love spending time with my wife and dogs, camping, playing board games, and pretending I know what I'm talking about when it comes to coffee and mixed drinks.
