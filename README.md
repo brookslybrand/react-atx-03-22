@@ -21,8 +21,8 @@ There are a _lot_ of cool aspects to building Remix Applications, but for the sa
 1. SSR
 2. Nested Layouts
 3. Data loading
-4. Mutations
-5.
+4. Sesssion Management 👈 YOU ARE HERE
+5. Mutations
 
 Some awesome things we won't be able to cover (at least not in detail), but you should check out if you have more time:
 

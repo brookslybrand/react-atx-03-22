@@ -12,7 +12,6 @@ export default function Index() {
   const users = useLoaderData<typeof loader>();
   return (
     <div style={{ fontFamily: "system-ui, sans-serif", lineHeight: "1.4" }}>
-      <h1>Welcome to Remix</h1>
       <ul>
         {users.map(({ id, email }) => (
           <li key={id}>{email}</li>
