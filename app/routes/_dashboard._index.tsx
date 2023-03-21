@@ -11,7 +11,7 @@ export async function loader() {
 export default function Index() {
   const users = useLoaderData<typeof loader>();
   return (
-    <div style={{ fontFamily: "system-ui, sans-serif", lineHeight: "1.4" }}>
+    <div>
       <ul>
         {users.map(({ id, email }) => (
           <li key={id}>{email}</li>

@@ -8,14 +8,12 @@ import {
   ScrollRestoration,
 } from "@remix-run/react";
 import { cssBundleHref } from "@remix-run/css-bundle";
+import styles from "./tailwind.css";
 
 export function links() {
   return [
     ...(cssBundleHref ? [{ rel: "stylesheet", href: cssBundleHref }] : []),
-    {
-      rel: "stylesheet",
-      href: "https://unpkg.com/modern-css-reset@1.4.0/dist/reset.min.css",
-    },
+    { rel: "stylesheet", href: styles },
   ];
 }
 
@@ -27,12 +25,12 @@ export const meta: MetaFunction = () => ({
 
 export default function App() {
   return (
-    <html lang="en">
+    <html lang="en" className="h-full bg-gray-50">
       <head>
         <Meta />
         <Links />
       </head>
-      <body>
+      <body className="h-full">
         <Outlet />
         <ScrollRestoration />
         <Scripts />
