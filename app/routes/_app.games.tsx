@@ -1,8 +1,10 @@
 import type { LoaderArgs } from "@remix-run/node";
 import { json } from "@remix-run/node";
 import { redirect } from "@remix-run/node";
-import { Outlet, useLoaderData } from "@remix-run/react";
-import { Link } from "react-router-dom";
+import { Link, Outlet, useLoaderData, useParams } from "@remix-run/react";
+import { clsx } from "clsx";
+import invariant from "tiny-invariant";
+
 import { db } from "~/utils/db.server";
 import { getUser } from "~/utils/session.server";
 
@@ -14,14 +16,24 @@ export async function loader({ request }: LoaderArgs) {
 
   const games = await db.game.findMany();
 
-  return json(games);
+  if (games.length <= 0) {
+    throw redirect("/");
+  }
+
+  return json({ games });
 }
 
 export default function Games() {
-  const games = useLoaderData<typeof loader>();
+  const { games } = useLoaderData<typeof loader>();
+  const { id: selectedGameId } = useParams();
+  invariant(selectedGameId, "How did we end up like this?");
+
+  const selectedGame = games.find(({ id }) => id === selectedGameId);
+  invariant(selectedGame, "How did we end up like this?");
+
   return (
-    <div className="flex">
-      <aside className="w-72 p-4">
+    <div className="flex w-full gap-8">
+      <aside className="w-[900px] p-4">
         <ul className="flex flex-col gap-8">
           {games.map(({ id, name, imageUrl }) => (
             <Link
@@ -34,7 +46,10 @@ export default function Games() {
                   <img
                     alt=""
                     src={imageUrl}
-                    className="w-32 h-32 object-cover mx-auto"
+                    className={clsx(
+                      "w-32 h-32 object-cover mx-auto",
+                      selectedGameId === id && "ring-4 ring-purple-400"
+                    )}
                   />
                 ) : (
                   <span>{name}</span>
@@ -44,7 +59,16 @@ export default function Games() {
           ))}
         </ul>
       </aside>
-      <Outlet />
+      <div>
+        <div className="w-2/3 space-y-4">
+          <h1 className="text-4xl font-extralight">{selectedGame.name}</h1>
+          {selectedGame.imageUrl ? (
+            <img alt="" src={selectedGame.imageUrl} />
+          ) : null}
+          <p>{selectedGame.description}</p>
+        </div>
+        <Outlet />
+      </div>
     </div>
   );
 }
