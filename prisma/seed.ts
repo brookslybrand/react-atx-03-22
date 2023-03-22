@@ -36,28 +36,69 @@ seed()
 function createReviews(prisma: PrismaClient, userId: string, games: Game[]) {
   let reviewTransactions = [];
   for (const game of games) {
-    const createReviewData = (rating: number) => ({
-      data: { userId, gameId: game.id, rating },
+    const createReviewData = ({
+      text,
+      rating,
+    }: {
+      text: string;
+      rating: number;
+    }) => ({
+      data: { userId, gameId: game.id, text, rating },
     });
     switch (game.name) {
       case "Frosthaven": {
-        reviewTransactions.push(prisma.review.create(createReviewData(5)));
+        reviewTransactions.push(
+          prisma.review.create(
+            createReviewData({
+              text: "Really enjoying playing this game! Already put an embarrasing amount of time into it and I've only had it for 2 weeks",
+              rating: 5,
+            })
+          )
+        );
         break;
       }
       case "Gloomhaven": {
-        reviewTransactions.push(prisma.review.create(createReviewData(5)));
+        reviewTransactions.push(
+          prisma.review.create(
+            createReviewData({
+              text: "I have played through an entire campaign and almost all the way through another. I have maybe played this game too much...",
+              rating: 5,
+            })
+          )
+        );
         break;
       }
       case "Codenames": {
-        reviewTransactions.push(prisma.review.create(createReviewData(3)));
+        reviewTransactions.push(
+          prisma.review.create(
+            createReviewData({
+              text: "This game is mediocre, I don't know why people like it so much",
+              rating: 3,
+            })
+          )
+        );
         break;
       }
       case "Patchwork": {
-        reviewTransactions.push(prisma.review.create(createReviewData(5)));
+        reviewTransactions.push(
+          prisma.review.create(
+            createReviewData({
+              text: "Really enjoyable 2 player game. Perfect length of time, blending competition and problem solving.",
+              rating: 5,
+            })
+          )
+        );
         break;
       }
       case "CATAN": {
-        reviewTransactions.push(prisma.review.create(createReviewData(4)));
+        reviewTransactions.push(
+          prisma.review.create(
+            createReviewData({
+              text: "It probably deserves less starts, but it was my first love",
+              rating: 4,
+            })
+          )
+        );
         break;
       }
     }

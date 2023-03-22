@@ -1,6 +1,7 @@
 import type { LoaderArgs, SerializeFrom } from "@remix-run/node";
 import { json, redirect } from "@remix-run/node";
 import { Link, useLoaderData } from "@remix-run/react";
+import { getReviewCountAndRating } from "~/utils/data.server";
 import { db } from "~/utils/db.server";
 
 import { getUser } from "~/utils/session.server";
@@ -21,24 +22,10 @@ export async function loader({ request }: LoaderArgs) {
     },
   });
 
-  // Here for a quick fix, stolen from https://stackoverflow.com/questions/11832914/how-to-round-to-at-most-2-decimal-places-if-necessary
-  const roundRating = (n: number) =>
-    Math.round((n + Number.EPSILON) * 100) / 100;
-
-  const games = rawGames.map(({ Review, ...game }) => {
-    const reviewCount = Review.length;
-
-    return {
-      ...game,
-      reviewCount,
-      avgRating:
-        reviewCount > 0
-          ? roundRating(
-              Review.reduce((sum, { rating }) => sum + rating, 0) / reviewCount
-            )
-          : null,
-    };
-  });
+  const games = rawGames.map(({ Review, ...game }) => ({
+    ...game,
+    ...getReviewCountAndRating(Review),
+  }));
 
   return json({ userName: user.name, games });
 }
@@ -59,6 +46,7 @@ export default function Index() {
 }
 
 function GameCard({
+  id,
   name,
   description,
   imageUrl,
@@ -68,7 +56,7 @@ function GameCard({
   return (
     <div className="overflow-hidden bg-white shadow sm:rounded-lg md:w-5/6 lg:w-3/4 xl:w-1/2">
       <Link
-        to="/"
+        to={`/games/${id}`}
         className="px-4 py-5 sm:px-6 flex items-center justify-between hover:bg-teal-100 border sm:rounded-t-lg  border-transparent focus:outline-none focus:border-teal-500"
       >
         <h2 className="text-base font-semibold leading-6 text-gray-900">
