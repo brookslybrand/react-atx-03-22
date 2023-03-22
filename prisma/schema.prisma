@@ -11,18 +11,31 @@ datasource db {
 }
 
 model User {
-  id       String @id @default(uuid())
-  email    String @unique
+  id       String   @id @default(uuid())
+  email    String   @unique
   name     String
   password String
-  posts    Post[]
+  role     String // in lue of enums in sqlite this should be 'admin' or 'user'
+  reviews  Review[]
 }
 
-model Post {
-  id        Int     @id @default(autoincrement())
-  title     String
-  content   String?
-  published Boolean @default(false)
-  author    User    @relation(fields: [authorId], references: [id])
-  authorId  String
+model Game {
+  id          String   @id @default(uuid())
+  name        String
+  description String?
+  imageUrl    String?
+  Review      Review[]
+}
+
+model Review {
+  Game      Game     @relation(fields: [gameId], references: [id])
+  gameId    String
+  User      User     @relation(fields: [userId], references: [id])
+  userId    String
+  text      String?
+  rating    Int
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([gameId, userId]) // A user can only review a game once
 }
