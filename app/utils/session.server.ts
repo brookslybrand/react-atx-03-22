@@ -1,10 +1,6 @@
 import { db } from "./db.server";
 import bcrypt from "bcryptjs";
-import {
-  createCookieSessionStorage,
-  createSession,
-  redirect,
-} from "@remix-run/node";
+import { createCookieSessionStorage, redirect } from "@remix-run/node";
 import type { User } from "@prisma/client";
 
 const sessionSecret = process.env.SESSION_SECRET;
@@ -41,6 +37,7 @@ export async function registerUser({
         name: sanitizedName,
         email: sanitizedEmail,
         password: hashedPassword,
+        role: "user",
       },
     });
   } catch (error) {
@@ -126,6 +123,7 @@ export async function getUser(request: Request) {
         id: true,
         name: true,
         email: true,
+        role: true,
       },
     });
   } catch {

@@ -33,6 +33,8 @@ export async function action({ request }: ActionArgs) {
 export default function Login() {
   const actionData = useActionData<typeof action>();
 
+  console.log("login?");
+
   return (
     <>
       <div className="flex min-h-full items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
