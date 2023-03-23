@@ -32,7 +32,10 @@ export default function Games() {
   invariant(selectedGame, "How did we end up like this?");
 
   return (
-    <div className="flex w-full gap-4 h-screen">
+    <div
+      // This hight is hacky, don't want to think about it much rigth now
+      className="flex w-full gap-4 h-[calc(100vh-72px)]"
+    >
       <aside className="p-4 min-w-max overflow-y-scroll">
         <ul className="flex flex-col items-center">
           {games.map(({ id, name, imageUrl }) => (
@@ -59,7 +62,7 @@ export default function Games() {
           ))}
         </ul>
       </aside>
-      <section className="pt-4 pr-12 overflow-y-scroll">
+      <section className="pt-4 pr-12 overflow-y-scroll flex flex-col divide-y divide-teal-400 divide-opacity-40 gap-4 max-w-4xl">
         <div className="space-y-4">
           <h1 className="text-4xl font-extralight">{selectedGame.name}</h1>
           {selectedGame.imageUrl ? (
@@ -67,7 +70,9 @@ export default function Games() {
           ) : null}
           <p>{selectedGame.description}</p>
         </div>
-        <Outlet />
+        <div className="pt-4">
+          <Outlet />
+        </div>
       </section>
     </div>
   );
