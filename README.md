@@ -4,7 +4,23 @@ This is a demo of a simple app built with [Remix](https://remix.run), a web fram
 
 ## Development
 
-From your terminal:
+First install the dependencies
+
+```sh
+npm install
+```
+
+Next you'll want to change the `.env.example` file into a `.env` file.
+
+Since this demo uses a sqlite database, we need to setup the database. Run the following command
+
+```sh
+npm run db:reset
+```
+
+This should just work, but if it doesn't I would check out the [prisma docs](https://www.prisma.io/docs/getting-started/quickstart) to learn how to get up and running with a database using Prisma.
+
+Finally, run
 
 ```sh
 npm run dev
