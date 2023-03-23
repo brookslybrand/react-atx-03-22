@@ -21,7 +21,7 @@ There are a _lot_ of cool aspects to building Remix Applications, but for the sa
 1. SSR
 2. Nested Layouts
 3. Data loading
-4. Sesssion Management 👈 YOU ARE HERE
+4. Sesssion Management
 5. Mutations
 
 Some awesome things we won't be able to cover (at least not in detail), but you should check out if you have more time:
@@ -29,7 +29,7 @@ Some awesome things we won't be able to cover (at least not in detail), but you 
 - [Remix Stacks](https://remix.run/docs/en/main/pages/stacks)
 - [Streaming/deferred](https://remix.run/docs/en/main/guides/streaming#md-streaming)
 - [Session Management](https://remix.run/docs/en/main/utils/sessions#using-sessions)
-- [Catch](https://remix.run/docs/en/main/route/catch-boundary)/[Error](https://remix.run/docs/en/main/route/error-boundary) Boundaries
+- [Catch Boundaries](https://remix.run/docs/en/main/route/catch-boundary)/[Error](https://remix.run/docs/en/main/route/error-boundary)
 - [Optimistic UI](https://remix.run/docs/en/main/guides/optimistic-ui)
 - [Resource routes](https://remix.run/docs/en/main/guides/resource-routes)
 

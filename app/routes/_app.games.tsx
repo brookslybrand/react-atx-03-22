@@ -32,14 +32,14 @@ export default function Games() {
   invariant(selectedGame, "How did we end up like this?");
 
   return (
-    <div className="flex w-full gap-8">
-      <aside className="w-[900px] p-4">
-        <ul className="flex flex-col gap-8">
+    <div className="flex w-full gap-4 h-screen">
+      <aside className="p-4 min-w-max overflow-y-scroll">
+        <ul className="flex flex-col items-center">
           {games.map(({ id, name, imageUrl }) => (
             <Link
               to={`/games/${id}`}
               key={id}
-              className="w-full rounded-lg hover:bg-teal-100 border border-transparent focus:outline-none focus:border-teal-500"
+              className="w-full rounded-lg hover:bg-teal-100 border border-transparent focus:outline-none focus:border-teal-500 py-4 px-8"
             >
               <li>
                 {imageUrl ? (
@@ -59,8 +59,8 @@ export default function Games() {
           ))}
         </ul>
       </aside>
-      <div>
-        <div className="w-2/3 space-y-4">
+      <section className="pt-4 pr-12 overflow-y-scroll">
+        <div className="space-y-4">
           <h1 className="text-4xl font-extralight">{selectedGame.name}</h1>
           {selectedGame.imageUrl ? (
             <img alt="" src={selectedGame.imageUrl} />
@@ -68,7 +68,7 @@ export default function Games() {
           <p>{selectedGame.description}</p>
         </div>
         <Outlet />
-      </div>
+      </section>
     </div>
   );
 }
